@@ -9,7 +9,7 @@ import time
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-def favorite_tweets(api, keywords, since_id):
+def favorite_retweet_tweets(api, keywords, since_id):
     logger.info('Favoriting and Retweeting tweets...')
     new_since_id = since_id
     for tweet in tweepy.Cursor(api.mentions_timeline, since_id=since_id).items():
@@ -30,7 +30,7 @@ def main():
     api = create_api()
     since_id = 1
     while True:
-        since_id = favorite_tweets(api, ['python', 'django'], since_id)
+        since_id = favorite_retweet_tweets(api, ['python', 'django'], since_id)
         logger.info('Waiting...')
         time.sleep(60)
 
